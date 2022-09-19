@@ -4,7 +4,7 @@ int main()
 {
     system("color 4");
     char nome[20],produto[20];
-    float valor, total, desconto, juros;
+    float valor, total, desconto, juros, troco, din;
     int qnt,senha,pag,c,parcela,p;
         printf("Nome do cliente: ");
             scanf("%s",&nome);
@@ -23,8 +23,19 @@ int main()
         if(pag==1){
             printf("\n==============DINHEIRO==============");
             desconto=total*0.10;
-            total=total+desconto;
-            printf("\n%s Voce optou por dinheiro e ganhou 10 porcento de desconto = R$ %.2f, \nficou R$ %.2f, Agradecemos sua compra!\n",nome,desconto,total);
+            total=total-desconto;
+            printf("\n%s voce optou por dinheiro e ganhou 10 porcento de desconto = R$ %.2f, \nficou R$ %.2f",nome , desconto, total);
+            printf("\nQuanto de dinheiro vai usar para pagar?");
+            scanf("%f",&din);
+                if(din>total){
+                    troco=din-total;
+                    printf("\nTroco de R$ %.2f, \nAgradecemos sua compra %s",troco,nome);
+                }else if(din<total){
+                    troco=total-din;
+                    printf("\n%s voce nao tem dinheiro suficiente para efetuar essa compra, faltam R$ %.2f",nome, troco);
+                }else if(din==total){
+                    printf("%s nao teve troco, Agradecemos a sua compra, aqui esta seu %s",nome, produto);
+                }
         }else{
             printf("\n==============DEBITO OU CREDITO==============");
             printf("\nCartao 1- Debito ou 2- Credito");
@@ -95,7 +106,7 @@ int main()
                         break;
 
                         default :
-                            printf ("\nNao existe essa parcela!\n");
+                            printf ("\nNao existe essa parcela nesta opcao!\n");
                     }
 
 
@@ -158,7 +169,7 @@ int main()
                         break;
 
                         default :
-                            printf ("\nNao existe essa parcela!\n");
+                            printf ("\nNao existe essa parcela nesta opcao!\n");
                     }
 
                 break;
@@ -200,17 +211,18 @@ int main()
                         break;
 
                         default :
-                            printf ("\nNao existe essa parcela!\n");
+                            printf ("\nNao existe essa parcela nesta opcao!\n");
                                 }
 
                 break;
 
                 default :
-                printf ("\nNao existe essa parcela!\n");
+                printf ("\nOpcao invalida, escolha de 1 a 4\n");
   }
             }
         }
-
+printf("\n\n");
+system("cls");
 system("pause");
 return 0;
 }
